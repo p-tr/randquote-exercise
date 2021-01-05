@@ -57,13 +57,17 @@ function pWriteFile(path, data, options) {
 
 async function loadData() {
   const encoding = 'utf-8';
-  const flags = 'a';
+  const flags = 'a+';
+
+  // Ensure file exists before reading it
+  fs.closeSync(fs.openSync(db, 'a'));
+
+  // Read data from file (even empty)
   const data = await pReadFile(db, { encoding, flags });
 
   try {
     quotes = JSON.parse(data);
   } catch(err) {
-    console.log("quotes.json is empty or corrupted, reinitializing...");
     quotes = {};
     await saveData();
   }
