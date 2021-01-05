@@ -30,7 +30,9 @@ const db = path.join(workdir, 'quotes.db.json');
 // copie de la collection de quotes en mémoire
 let quotes = {};
 
+//==============================================================================
 // primitives de lecture et écriture de données dans un fichier
+
 function pReadFile(path, options) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, options, (err, data) => {
@@ -55,6 +57,9 @@ function pWriteFile(path, data, options) {
   });
 }
 
+//==============================================================================
+// Chargement et sauvegarde des données dans la DB
+
 async function loadData() {
   const encoding = 'utf-8';
   const flags = 'a+';
@@ -78,6 +83,15 @@ async function saveData() {
   await pWriteFile(db, data);
 }
 
+//==============================================================================
+// Fonctions demandées :
+//  setQuote : ajout / mise à jour d'une quote
+//  getQuote : récupération d'une quote
+//  rmQuote : suppression d'une quote
+// TODO :
+//  getRandomQuote : récupération aléatoire d'une quote
+//  allQuotes : affichage de toutes les quotes
+
 async function setQuote(label, quote) {
   quotes[label] = quote;
   await saveData();
@@ -92,6 +106,17 @@ async function getQuote(label) {
   return quotes[label];
 }
 
+async function getRandomQuote() {
+  // TODO !
+}
+
+async function allQuotes() {
+  // TODO !
+}
+
+//==============================================================================
+//  Bloc principal
+//
 (async () => {
   await loadData(); // on charge les données au début de l'exécution du script
 
@@ -130,6 +155,7 @@ async function getQuote(label) {
       const quote = await getQuote(label);
       console.log(quote);
     })
+    // TODO : ajouter les commandes "rand" et "all"
     .help()
     .argv
 })();
