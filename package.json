@@ -1,0 +1,16 @@
+{
+  "name": "randquotes",
+  "version": "1.0.0",
+  "description": "Random Quotes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node randquote.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pierre Tellier-Robert",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "yargs": "^16.2.0"
+  }
+}

@@ -25,7 +25,7 @@ const path = require('path');
 // récupération du répertoire courant pour stocker / lire la collection
 const { cwd } = process;
 const workdir = cwd();
-const db = path.join(workdir, 'quotes.json');
+const db = path.join(workdir, 'quotes.db.json');
 
 // copie de la collection de quotes en mémoire
 let quotes = {};
